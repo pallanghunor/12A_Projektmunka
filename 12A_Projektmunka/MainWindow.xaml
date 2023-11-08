@@ -45,7 +45,7 @@
             <Label Content="Sebzés:"/>
              <TextBox x:Name="sebzesTbx" Height="50" Width="100"/>
             </StackPanel>
-            <Slider x:Name="" Minimum="0" Maximum="100" Height="50" Width="500" HorizontalAlignment="Left" Margin="100, 0"/>
+            <Slider x:Name="sebzesSldr" Minimum="0" Maximum="100" Height="50" Width="500" HorizontalAlignment="Left" Margin="100, 0"/>
             
             
             <Label Content="Tűzgyorsaság:"/>

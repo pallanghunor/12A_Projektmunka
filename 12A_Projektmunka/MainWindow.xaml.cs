@@ -20,9 +20,11 @@ namespace _12A_Projektmunka
     /// </summary>
     public partial class MainWindow : Window
     {
+        Model model = new Model();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = model;
         }
     }
 }
