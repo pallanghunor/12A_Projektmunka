@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12A_Projektmunka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None">
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" FontSize="50">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+            <Button x:Name="fegyBtn" Content="Fegyverek" Height="70"/>
+        </StackPanel>
     </Grid>
 </Window>
