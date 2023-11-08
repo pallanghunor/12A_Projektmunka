@@ -12,8 +12,24 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
+        
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
-            <Button x:Name="fegyBtn" Content="Fegyverek" Height="70"/>
+            <Button x:Name="fegyBtn" Content="Fegyverek" Margin="10" Height="70"/>
+            <Button x:Name="rolunkBtn" Content="Rólunk" Margin="10" Height="70"/>
+            <Button x:Name="exitBtn" Content="Kilép" Margin="10" Height="70"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1">
+            <ListBox x:Name="fegyLbx" Height="700" Width="500" Margin="10"/>
+            <Button x:Name="felveszBtn" Content="Fegyver felvétele" Margin="0, 100" Width="500"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <Image Height="300" Width="700" Margin="0, 60"/>
+            <StackPanel Height="100" Margin="40, 0" Orientation="Horizontal">
+                <Label Content="Név:"/>
+                <TextBox x:Name="nevTbx" Margin="200, 0" Height="100" Width="500"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
