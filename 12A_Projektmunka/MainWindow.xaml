@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12A_Projektmunka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" FontSize="50">
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" FontSize="30">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -13,23 +13,56 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         
+        <!--gombok-->
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Button x:Name="fegyBtn" Content="Fegyverek" Margin="10" Height="70"/>
             <Button x:Name="rolunkBtn" Content="Rólunk" Margin="10" Height="70"/>
             <Button x:Name="exitBtn" Content="Kilép" Margin="10" Height="70"/>
         </StackPanel>
         
+        <!--lista-->
         <StackPanel Grid.Column="1">
             <ListBox x:Name="fegyLbx" Height="700" Width="500" Margin="10"/>
             <Button x:Name="felveszBtn" Content="Fegyver felvétele" Margin="0, 100" Width="500"/>
         </StackPanel>
-
+        
+        
         <StackPanel Grid.Column="2">
             <Image Height="300" Width="700" Margin="0, 60"/>
-            <StackPanel Height="100" Margin="40, 0" Orientation="Horizontal">
-                <Label Content="Név:"/>
-                <TextBox x:Name="nevTbx" Margin="200, 0" Height="100" Width="500"/>
+            
+            <!--statok-->
+            <StackPanel Height="60" Margin="40, 0" Orientation="Horizontal">
+                <Label Content="Ár:"/>
+                <TextBox x:Name="arTbx" Margin="200, 0" Height="60" Width="500"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Lőszer:"/>
+                <TextBox x:Name="loszerTbx" Margin="150, 0" Height="50" Width="500"/>
+            </StackPanel>
+            
+            
+            <StackPanel Orientation="Horizontal" Height="50">
+            <Label Content="Sebzés:"/>
+             <TextBox x:Name="sebzesTbx" Height="50" Width="100"/>
+            </StackPanel>
+            <Slider x:Name="" Minimum="0" Maximum="100" Height="50" Width="500" HorizontalAlignment="Left" Margin="100, 0"/>
+            
+            
+            <Label Content="Tűzgyorsaság:"/>
+            <Slider x:Name="gyorsSldr" Minimum="0" Maximum="10" Height="30" Width="500" HorizontalAlignment="Left" Margin="100, 0"/>
+
+            <StackPanel Orientation="Horizontal">
+            <Label Content="Páncélátütés:"/>
+               <TextBox x:Name="pancTbx" Height="50" Width="100"/>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Horizontal" Margin="0, 100" HorizontalAlignment="Center">
+            <Button x:Name="modositBtn" Content="Módosítás" Height="50" Width="200"/>
+            <Button x:Name="torolBtn" Content="Törlés" Height="50" Width="200" Margin="100, 0"/>
+                
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </Window>
