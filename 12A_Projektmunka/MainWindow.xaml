@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" FontSize="30" Foreground="White">
     <Window.Background>
-        <ImageBrush Opacity="0.5" ImageSource="C:\Users\pallang.hunor\OneDrive\02_Tanulmányok\02_Jedlik\12_A\Wpf\12A_Projektmunka\12A_Projektmunka\img\mainBackround.jpg"/>
+        <ImageBrush Opacity="0.5" ImageSource="//img/mainBackround.jpg"/>
     </Window.Background>
     <Window.Resources>
         
@@ -40,7 +40,13 @@
         <!--lista-->
         <StackPanel Grid.Column="1">
             <ComboBox x:Name="weaponTypeCbx" Width="500" Margin="0,10,0,0" ItemsSource="{Binding types}" SelectionChanged="weaponTypeCbx_SelectionChanged"/>
-            <ListBox x:Name="weaponLbx" Height="900" Width="500" Margin="10" ItemsSource="{Binding filteredWeapons}" DisplayMemberPath="Name" Background="{StaticResource TransparentBlack}"/>
+            <Border Background="{StaticResource TransparentBlack}" CornerRadius="50">
+                <ListBox x:Name="weaponLbx" Height="900" Width="500" Margin="10" ItemsSource="{Binding filteredWeapons}" DisplayMemberPath="Name">
+                    <ListBox.Resources>
+                        
+                    </ListBox.Resources>
+                </ListBox>
+            </Border>
             <Button x:Name="addBtn" Content="Add Weapon" Margin="0,30" Width="400" Height="50"/>
         </StackPanel>
 
@@ -49,7 +55,7 @@
             <Border Background="{StaticResource TransparentBlack}" CornerRadius="50">
                 <StackPanel>
                     <Label Content="AK-47" Margin="50,0" FontSize="40" FontWeight="DemiBold"/>
-                    <Image Height="300" Source="C:\Users\pallang.hunor\OneDrive\02_Tanulmányok\02_Jedlik\12_A\Wpf\12A_Projektmunka\12A_Projektmunka\img\ak-47.png" Width="700" Margin="0, 60"/>
+                    <Image Height="300" Source="/img/ak-47.png" Width="700" Margin="0, 60"/>
                 </StackPanel>
             </Border>
             
