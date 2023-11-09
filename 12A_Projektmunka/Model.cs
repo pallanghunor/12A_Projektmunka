@@ -31,9 +31,28 @@ namespace _12A_Projektmunka
             set { _types = value; OnPorpertyChanged("types"); }
         }
 
+        private ObservableCollection<Weapon> _filteredWeapons;
+        public ObservableCollection<Weapon> filteredWeapons
+        {
+            get { return _filteredWeapons; }
+            set { _filteredWeapons = value; OnPorpertyChanged("filteredWeapons"); }
+        }
+
         public Model()
         {
             ReadFile();
+        }
+
+        public void FilterWeapons(string weaponType)
+        {
+            filteredWeapons = new ObservableCollection<Weapon>();
+            foreach (var weapon in weapons)
+            {
+                if (weapon.WeaponType == weaponType || weaponType == "")
+                {
+                    filteredWeapons.Add(weapon);
+                }
+            }
         }
 
         private void ReadFile()

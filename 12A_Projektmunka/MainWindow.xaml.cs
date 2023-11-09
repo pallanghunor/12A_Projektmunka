@@ -25,6 +25,12 @@ namespace _12A_Projektmunka
         {
             InitializeComponent();
             this.DataContext = model;
+            model.FilterWeapons("");
+        }
+
+        private void weaponTypeCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            model.FilterWeapons(weaponTypeCbx.SelectedItem.ToString());
         }
     }
 }

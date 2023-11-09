@@ -5,64 +5,97 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12A_Projektmunka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" FontSize="30">
+        Title="MainWindow" Height="1080" Width="1920" WindowState="Maximized" WindowStyle="None" FontSize="30" Foreground="White">
+    <Window.Background>
+        <ImageBrush Opacity="0.5" ImageSource="C:\Users\pallang.hunor\OneDrive\02_Tanulmányok\02_Jedlik\12_A\Wpf\12A_Projektmunka\12A_Projektmunka\img\mainBackround.jpg"/>
+    </Window.Background>
+    <Window.Resources>
+        
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <SolidColorBrush x:Key="TransparentBlack" Color="Black" Opacity="0.5"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        
+
         <!--gombok-->
         <StackPanel Grid.Column="0" VerticalAlignment="Center">
             <Button x:Name="weaponBtn" Content="Weapons" Margin="10" Height="70"/>
             <Button x:Name="aboutBtn" Content="About us" Margin="10" Height="70"/>
             <Button x:Name="quitBtn" Content="Quit" Margin="10" Height="70"/>
         </StackPanel>
-        
+
         <!--lista-->
         <StackPanel Grid.Column="1">
-            <ComboBox x:Name="weaponTypeCbx" Width="500" Margin="0,10,0,0"/>
-            <ListBox x:Name="weaponLbx" Height="900" Width="500" Margin="10"/>
+            <ComboBox x:Name="weaponTypeCbx" Width="500" Margin="0,10,0,0" ItemsSource="{Binding types}" SelectionChanged="weaponTypeCbx_SelectionChanged"/>
+            <ListBox x:Name="weaponLbx" Height="900" Width="500" Margin="10" ItemsSource="{Binding filteredWeapons}" DisplayMemberPath="Name" Background="{StaticResource TransparentBlack}"/>
             <Button x:Name="addBtn" Content="Add Weapon" Margin="0,30" Width="400" Height="50"/>
         </StackPanel>
-        
-        
-        <StackPanel Grid.Column="2">
-            <Image Height="300" Width="700" Margin="0, 60"/>
+
+
+        <StackPanel Grid.Column="2" Margin="40" >
+            <Border Background="{StaticResource TransparentBlack}" CornerRadius="50">
+                <StackPanel>
+                    <Label Content="AK-47" Margin="50,0" FontSize="40" FontWeight="DemiBold"/>
+                    <Image Height="300" Source="C:\Users\pallang.hunor\OneDrive\02_Tanulmányok\02_Jedlik\12_A\Wpf\12A_Projektmunka\12A_Projektmunka\img\ak-47.png" Width="700" Margin="0, 60"/>
+                </StackPanel>
+            </Border>
             
+
             <!--statok-->
-            <StackPanel Height="60" Margin="40, 0" Orientation="Horizontal">
+            <DockPanel>
+                <Label Content="Name:"/>
+                <TextBox x:Name="nameTbx" Text="{Binding name}"/>
+            </DockPanel>
+            
+            <DockPanel>
                 <Label Content="Cost:"/>
-                <TextBox x:Name="costTbx" Margin="200, 0" Height="60" Width="500"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="costTbx"  Height="50" Width="100" HorizontalAlignment="Right"/>
+            </DockPanel>
+
+            <DockPanel>
                 <Label Content="Ammo:"/>
-                <TextBox x:Name="ammoTbx" Margin="150, 0" Height="50" Width="500"/>
-            </StackPanel>
-            
-            
-            <StackPanel Orientation="Horizontal" Height="50">
-            <Label Content="Damage:"/>
-             <TextBox x:Name="damageTbx" Height="50" Width="100"/>
-            </StackPanel>
-            <Slider x:Name="damageSldr" Minimum="0" Maximum="100" Height="50" Width="500" HorizontalAlignment="Left" Margin="100, 0"/>
-            
-            
+                <TextBox x:Name="ammoTbx" Height="50" Width="100" HorizontalAlignment="Right"/>
+            </DockPanel>
+
+            <DockPanel Height="50">
+                <Label Content="Damage:"/>
+                <TextBox x:Name="damageTbx" Height="50" Width="100" HorizontalAlignment="Right"/>
+            </DockPanel>
+            <Slider x:Name="damageSldr" Minimum="0" Maximum="100" Width="800" HorizontalAlignment="Left" Margin="50, 10"/>
+
+
             <Label Content="Fire rate:"/>
-            <Slider x:Name="frateSldr" Minimum="0" Maximum="10" Height="30" Width="500" HorizontalAlignment="Left" Margin="100, 0"/>
+            <Slider x:Name="frateSldr" Minimum="0" Maximum="10" Width="800" HorizontalAlignment="Left" Margin="50, 0"/>
 
-            <StackPanel Orientation="Horizontal">
-            <Label Content="Penetration:"/>
-               <TextBox x:Name="penTbx" Height="50" Width="100"/>
-            </StackPanel>
+            <DockPanel>
+                <Label Content="Penetration:"/>
+                <TextBox x:Name="penTbx" Height="50" Width="100" HorizontalAlignment="Right"/>
+            </DockPanel>
+            <Slider x:Name="penSldr" Minimum="0" Maximum="100" Width="800" HorizontalAlignment="Left" Margin="50, 0"/>
 
 
-            <StackPanel Orientation="Horizontal" Margin="0, 100" HorizontalAlignment="Center">
-            <Button x:Name="modifyBtn" Content="Modify" Height="50" Width="200"/>
-            <Button x:Name="delBtn" Content="Delete" Height="50" Width="200" Margin="100, 0"/>
-                
-            </StackPanel>
+            <DockPanel Margin="0,50" HorizontalAlignment="Center">
+                <Button x:Name="modifyBtn" Content="Modify" Height="50" Width="200" Margin="0,0,50,0"/>
+                <Button x:Name="delBtn" Content="Delete" Height="50" Width="200" Margin="50,0"/>
+            </DockPanel>
+            <DockPanel HorizontalAlignment="Center" Visibility="Hidden">
+                <Button x:Name="saveBtn" Content="Save" Height="50" Width="200" Margin="0,0,50,0"/>
+                <Button x:Name="cancelBtn" Content="Cancel" Height="50" Width="200" Margin="50,0"/>
+            </DockPanel>
+
 
         </StackPanel>
     </Grid>
