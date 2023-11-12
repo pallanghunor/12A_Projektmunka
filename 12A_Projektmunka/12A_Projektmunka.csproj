@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\aboutUsBackground.jpg" />
+    <None Remove="img\ak-47.png" />
+    <None Remove="img\mainbackground.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\aboutUsBackground.jpg" />
+    <Resource Include="img\ak-47.png" />
+    <Resource Include="img\mainbackground.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="weapons.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
