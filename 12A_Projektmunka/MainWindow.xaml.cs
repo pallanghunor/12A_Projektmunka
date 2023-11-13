@@ -32,5 +32,15 @@ namespace _12A_Projektmunka
         {
             model.FilterWeapons(weaponTypeCbx.SelectedItem.ToString());
         }
+
+        private void weaponLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            model.selectedWeapon = (Weapon)weaponLbx.SelectedItem;
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            model.selectedWeapon = new Weapon();
+        }
     }
 }

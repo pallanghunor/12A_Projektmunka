@@ -38,6 +38,13 @@ namespace _12A_Projektmunka
             set { _filteredWeapons = value; OnPorpertyChanged("filteredWeapons"); }
         }
 
+        private Weapon _selectedWeapon;
+        public Weapon selectedWeapon
+        {
+            get { return _selectedWeapon; }
+            set { _selectedWeapon = value; OnPorpertyChanged("selectedWeapon"); }
+        }
+
         public Model()
         {
             ReadFile();
