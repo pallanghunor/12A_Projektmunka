@@ -8,7 +8,12 @@ namespace _12A_Projektmunka
 {
     class Weapon
     {
-        public string Name { get; set; }
+        private string _name;
+        public string Name 
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
         public string WeaponType { get; set; }
         public string FileName { get; set; }
         public int Cost { get; set; }
