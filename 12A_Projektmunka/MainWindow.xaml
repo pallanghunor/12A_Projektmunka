@@ -302,7 +302,7 @@
             <Grid>
                 <StackPanel>
                     <Button x:Name="weaponBtn" Content="Weapons" Margin="10" Height="70" Width="200"/>
-                    <Button x:Name="aboutBtn" Content="About us" Margin="10" Height="70" Width="200"/>
+                    <Button x:Name="aboutBtn" Content="About us" Margin="10" Height="70" Width="200" Click="aboutBtn_Click"/>
                     <Button x:Name="quitBtn" Content="Quit" Margin="10" Height="70" Width="200" Click="quitBtn_Click"/>
                 </StackPanel>
             </Grid>
