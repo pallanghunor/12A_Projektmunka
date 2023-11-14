@@ -21,11 +21,13 @@ namespace _12A_Projektmunka
     public partial class MainWindow : Window
     {
         Model model = new Model();
+        AboutUs w = new AboutUs();
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = model;
             model.FilterWeapons("");
+            
         }
 
         private void weaponTypeCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,6 +48,13 @@ namespace _12A_Projektmunka
         private void quitBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+            w.Close();
+            
+        }
+
+        private void aboutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            w.Show();
         }
     }
 }
