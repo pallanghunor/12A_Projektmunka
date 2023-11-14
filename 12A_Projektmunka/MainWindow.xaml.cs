@@ -42,5 +42,10 @@ namespace _12A_Projektmunka
         {
             model.selectedWeapon = new Weapon();
         }
+
+        private void quitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
