@@ -5,17 +5,86 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_12A_Projektmunka"
         mc:Ignorable="d"
-        Title="AboutUs" Height="700" Width="1350" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="AboutUs" Height="700" Width="1350" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
+        <Window.Background>
+            <SolidColorBrush Opacity="0.95" Color="Gray"/>
+        </Window.Background>
+
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Image Source="/12A_Projektmunka;component/img/aboutUsBackground.jpg" Width="600" Margin="30"/>
+            <Label Content="Hunor" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Foreground="White"/>
+
+            <StackPanel Orientation="Horizontal">
+            <Label Content="Magasság:" FontSize="30" Margin="10, 0"/>
+                <TextBox HorizontalAlignment="Right" Margin="100, 0" Width="100" Text="150cm" FontSize="30"/>
+            </StackPanel>
+
+            <Slider Minimum="0" Maximum="200" Value="150"/>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Bitches:" FontSize="30" Margin="10, 0"/>
+                <TextBox HorizontalAlignment="Right" Margin="100, 0" Width="100" Text="0" FontSize="30" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <Slider Minimum="0" Maximum="10" Value="0"/>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Téglával megdobott hajléktalanok:" FontSize="30" Margin="0, 0"/>
+                <TextBox HorizontalAlignment="Right" Margin="50, 0" Width="100" Text="összes" FontSize="30" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <Slider Minimum="0" Maximum="10" Value="10"/>
+        </StackPanel>
+
+        
+        
+        
+        
+        <StackPanel Grid.Column="1">
+            <Image Source="/12A_Projektmunka;component/img/aboutUsBackground.jpg" Width="600" Margin="30"/>
+            <Label Content="Ákos" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Foreground="White"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Illegális határátlépések:" FontSize="30" Margin="10, 0"/>
+                <TextBox HorizontalAlignment="Right" Margin="100, 0" Width="100" Text="420" FontSize="30" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <Slider Minimum="0" Maximum="200" Value="150"/>
+
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Bitches:" FontSize="30" Margin="10, 0"/>
+                <TextBox HorizontalAlignment="Right" Margin="100, 0" Width="100" Text="0" FontSize="30" HorizontalContentAlignment="Center"/>
+            </StackPanel>
+
+            <Slider Minimum="0" Maximum="10" Value="0"/>
+
+
+            
+                <Label Content="Munkás pancser:" FontSize="30" Margin="0, 0"/>
+                
+            
+            <StackPanel Orientation="Horizontal" Margin="200, 0">
+            <Button Content="Igen" Width="100" Height="40" FontSize="25" Click="Button_Click" />
+             <Button Content="Nem" Width="100" Height="40" FontSize="25" IsEnabled="False" Margin="10, 0"/>
+            </StackPanel>
+        </StackPanel>
+        
+    
     </Grid>
 </Window>
