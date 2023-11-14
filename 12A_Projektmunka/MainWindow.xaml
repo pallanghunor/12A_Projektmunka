@@ -91,6 +91,31 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGoldenrod"/>
+                    
+                </Trigger>
+            </Style.Triggers>
+
+
+
+
+
+
+
+
+
         </Style>
     </Window.Resources>
     <Grid>
@@ -99,7 +124,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-
+        
         <!--gombok-->
         <Border Grid.Column="0" VerticalAlignment="Center" Background="{StaticResource TransparentBlack}" CornerRadius="50" Width="300">
             <Grid>
