@@ -28,6 +28,21 @@ namespace _12A_Projektmunka
             model.FilterWeapons("");
         }
 
+        private void selectedWeaponActive(bool active)
+        {
+            selectedNameTbx.IsEnabled = 
+                selectedWeaponTypeCbx.IsEnabled = 
+                selectedcostTbx.IsEnabled = 
+                selectedammoTbx.IsEnabled = 
+                selecteddamageTbx.IsEnabled = 
+                selecteddamageSldr.IsEnabled = 
+                selectedfrateSldr.IsEnabled = 
+                selectedpenTbx.IsEnabled = 
+                selectedpenSldr.IsEnabled = active;
+            if (active)
+                selectedNameTbx.Focus();
+        }
+
         private void weaponTypeCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             model.FilterWeapons(weaponTypeCbx.SelectedItem.ToString());
@@ -35,11 +50,13 @@ namespace _12A_Projektmunka
 
         private void weaponLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            selectedWeaponZone.Visibility = Visibility.Visible;
             model.selectedWeapon = (Weapon)weaponLbx.SelectedItem;
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
+            selectedWeaponZone.Visibility = Visibility.Visible;
             model.selectedWeapon = new Weapon();
         }
 
@@ -47,5 +64,48 @@ namespace _12A_Projektmunka
         {
             this.Close();
         }
+
+        private void modifyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectedWeaponActive(true);
+
+            selectWeaponZone.IsEnabled = false;
+            modifyBtn.Visibility = Visibility.Collapsed;
+            delBtn.Visibility = Visibility.Collapsed;
+            saveBtn.Visibility = Visibility.Visible;
+            cancelBtn.Visibility = Visibility.Visible;
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectedWeaponActive(false);
+            selectWeaponZone.IsEnabled = true;
+            saveBtn.Visibility = Visibility.Collapsed;
+            cancelBtn.Visibility = Visibility.Collapsed;
+            modifyBtn.Visibility = Visibility.Visible;
+            delBtn.Visibility = Visibility.Visible;
+        }
+
+        private void cancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectedWeaponActive(false);
+
+            selectWeaponZone.IsEnabled = true;
+            saveBtn.Visibility = Visibility.Collapsed;
+            cancelBtn.Visibility = Visibility.Collapsed;
+            modifyBtn.Visibility = Visibility.Visible;
+            delBtn.Visibility = Visibility.Visible;
+        }
+
+        private void selectedWeaponZoneBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectedWeaponZone.Visibility = Visibility.Hidden;
+            saveBtn.Visibility = Visibility.Collapsed;
+            cancelBtn.Visibility = Visibility.Collapsed;
+            modifyBtn.Visibility = Visibility.Visible;
+            delBtn.Visibility = Visibility.Visible;
+        }
+
+        
     }
 }

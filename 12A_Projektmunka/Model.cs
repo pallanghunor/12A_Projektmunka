@@ -42,7 +42,15 @@ namespace _12A_Projektmunka
         public Weapon selectedWeapon
         {
             get { return _selectedWeapon; }
-            set { _selectedWeapon = value; OnPorpertyChanged("selectedWeapon"); }
+            set 
+            { 
+                if(_selectedWeapon != value )
+                {
+                    _selectedWeapon = value;
+                    OnPorpertyChanged("selectedWeapon");
+                }
+                 
+            }
         }
 
         public Model()
