@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace _12A_Projektmunka
 {
@@ -21,7 +25,7 @@ namespace _12A_Projektmunka
     public partial class MainWindow : Window
     {
         Model model = new Model();
-        AboutUs w = new AboutUs();
+        AboutUs w;
         public MainWindow()
         {
             InitializeComponent();
@@ -116,11 +120,15 @@ namespace _12A_Projektmunka
         private void quitBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            w.Close();
+            if(w != null)
+            {
+                w.Close();
+            }
         }
 
         private void aboutBtn_Click(object sender, RoutedEventArgs e)
         {
+            w = new AboutUs();
             w.Show();
         }
 
@@ -192,6 +200,17 @@ namespace _12A_Projektmunka
                 model.weapons.Remove(model.selectedWeapon);
                 selectedWeaponZone.Visibility = Visibility.Hidden;
                 refreshLbx();
+            }
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                
             }
         }
     }
