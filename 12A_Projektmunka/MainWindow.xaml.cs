@@ -119,6 +119,7 @@ namespace _12A_Projektmunka
 
         private void quitBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             this.Close();
             if(w != null)
             {
