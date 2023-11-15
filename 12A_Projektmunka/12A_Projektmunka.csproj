@@ -72,10 +72,4 @@
     <Resource Include="img\Ump45.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="weapons.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

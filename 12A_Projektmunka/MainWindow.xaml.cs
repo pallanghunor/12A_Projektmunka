@@ -113,13 +113,20 @@ namespace _12A_Projektmunka
         {
             selectedWeaponZone.Visibility = Visibility.Visible;
             weaponLbx.SelectedItem = null;
+            model.selectedWeapon = null;
             model.tempWeapon = new Weapon();
             selectedWeaponActive(true);
         }
 
         private void quitBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            StreamWriter sw = new StreamWriter("weapons.txt");
+            sw.WriteLine("Name;Type;File name;Cost;Ammo;Damage;Fire rate;Penetration;Difficulty");
+            foreach (var weapon in model.weapons)
+            {
+                sw.WriteLine($"{weapon.Name};{weapon.WeaponType};{weapon.FileName};{weapon.Cost};{weapon.Ammo};{weapon.Damage};{weapon.Difficulty};{weapon.FireRate};{weapon.Penetration}");
+            }
+            sw.Close();
             this.Close();
             if(w != null)
             {
@@ -149,6 +156,7 @@ namespace _12A_Projektmunka
                     {
                         model.weapons[i] = model.tempWeapon;
                         refreshLbx();
+                        break;
                     }
                 }
             }
