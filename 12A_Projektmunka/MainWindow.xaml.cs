@@ -29,6 +29,24 @@ namespace _12A_Projektmunka
             model.FilterWeapons("");
         }
 
+        private void refreshLbx()
+        {
+            model.FilterWeapons(weaponTypeCbx.SelectedItem.ToString());
+        }
+
+        private void resetWeaponStats()
+        {
+            model.tempWeapon.Name = model.selectedWeapon.Name;
+            model.tempWeapon.WeaponType = model.selectedWeapon.WeaponType;
+            model.tempWeapon.Cost = model.selectedWeapon.Cost;
+            model.tempWeapon.FileName = model.selectedWeapon.FileName;
+            model.tempWeapon.Ammo = model.selectedWeapon.Ammo;
+            model.tempWeapon.Damage = model.selectedWeapon.Damage;
+            model.tempWeapon.Difficulty = model.selectedWeapon.Difficulty;
+            model.tempWeapon.FireRate = model.selectedWeapon.FireRate;
+            model.tempWeapon.Penetration = model.selectedWeapon.Penetration;
+        }
+
         private void selectedWeaponActive(bool active)
         {
             selectedNameTbx.IsEnabled = 
@@ -61,19 +79,35 @@ namespace _12A_Projektmunka
 
         private void weaponTypeCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            model.FilterWeapons(weaponTypeCbx.SelectedItem.ToString());
+            refreshLbx();
         }
 
         private void weaponLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedWeaponZone.Visibility = Visibility.Visible;
-            model.selectedWeapon = (Weapon)weaponLbx.SelectedItem;
+                model.selectedWeapon = (Weapon)weaponLbx.SelectedItem;
+            if (model.selectedWeapon != null)
+            {
+                selectedWeaponZone.Visibility = Visibility.Visible;
+                model.tempWeapon = new Weapon
+                {
+                    Name = model.selectedWeapon.Name,
+                    WeaponType = model.selectedWeapon.WeaponType,
+                    FileName = model.selectedWeapon.FileName,
+                    Cost = model.selectedWeapon.Cost,
+                    Ammo = model.selectedWeapon.Ammo,
+                    Damage = model.selectedWeapon.Damage,
+                    Difficulty = model.selectedWeapon.Difficulty,
+                    FireRate = model.selectedWeapon.FireRate,
+                    Penetration = model.selectedWeapon.Penetration
+                };
+            }
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedWeaponZone.Visibility = Visibility.Visible;
-            model.selectedWeapon = new Weapon();
+            weaponLbx.SelectedItem = null;
+            model.tempWeapon = new Weapon();
             selectedWeaponActive(true);
         }
 
@@ -81,7 +115,6 @@ namespace _12A_Projektmunka
         {
             this.Close();
             w.Close();
-            
         }
 
         private void aboutBtn_Click(object sender, RoutedEventArgs e)
@@ -96,21 +129,68 @@ namespace _12A_Projektmunka
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-            model.selectedWeapon = model.tempWeapon(model.selectedWeapon);
             selectedWeaponActive(false);
+            if(model.selectedWeapon != null) //Meglévő fegyver modosítása
+            {
+                for (int i = 0; i < model.weapons.Count; i++)
+                {
+                    if (model.weapons[i] == model.selectedWeapon)
+                    {
+                        model.weapons[i] = model.tempWeapon;
+                        refreshLbx();
+                    }
+                }
+            }
+            else // új fegyver hozzáadása
+            {
+                model.weapons.Add(model.tempWeapon);
+            }
+            refreshLbx();
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedWeaponActive(false);
+            if(model.selectedWeapon  == null)
+            {
+                selectedWeaponZone.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                resetWeaponStats();
+            }
         }
 
         private void selectedWeaponZoneBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedWeaponZone.Visibility = Visibility.Hidden;
             selectedWeaponActive(false);
+            weaponLbx.SelectedItem = null;
         }
 
-        
+        private void selectWeaponZoneBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectedWeaponZone.Visibility = Visibility.Hidden;
+            selectWeaponZone.Visibility = Visibility.Hidden;
+            selectedWeaponActive(false);
+            weaponTypeCbx.SelectedIndex = 0;
+        }
+
+        private void showWeaponsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            selectWeaponZone.Visibility= Visibility.Visible;
+        }
+
+        private void delBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteMessageBox deleteMessageBox = new DeleteMessageBox();
+            bool? result = deleteMessageBox.ShowDialog();
+            if (result == true)
+            {
+                model.weapons.Remove(model.selectedWeapon);
+                selectedWeaponZone.Visibility = Visibility.Hidden;
+                refreshLbx();
+            }
+        }
     }
 }
