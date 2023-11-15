@@ -27,7 +27,6 @@ namespace _12A_Projektmunka
             InitializeComponent();
             this.DataContext = model;
             model.FilterWeapons("");
-            
         }
 
         private void selectedWeaponActive(bool active)
@@ -42,7 +41,22 @@ namespace _12A_Projektmunka
                 selectedpenTbx.IsEnabled = 
                 selectedpenSldr.IsEnabled = active;
             if (active)
+            {
                 selectedNameTbx.Focus();
+                selectWeaponZone.IsEnabled = false;
+                modifyBtn.Visibility = Visibility.Collapsed;
+                delBtn.Visibility = Visibility.Collapsed;
+                saveBtn.Visibility = Visibility.Visible;
+                cancelBtn.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                selectWeaponZone.IsEnabled = true;
+                saveBtn.Visibility = Visibility.Collapsed;
+                cancelBtn.Visibility = Visibility.Collapsed;
+                modifyBtn.Visibility = Visibility.Visible;
+                delBtn.Visibility = Visibility.Visible;
+            }
         }
 
         private void weaponTypeCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,6 +74,7 @@ namespace _12A_Projektmunka
         {
             selectedWeaponZone.Visibility = Visibility.Visible;
             model.selectedWeapon = new Weapon();
+            selectedWeaponActive(true);
         }
 
         private void quitBtn_Click(object sender, RoutedEventArgs e)
@@ -77,42 +92,23 @@ namespace _12A_Projektmunka
         private void modifyBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedWeaponActive(true);
-
-            selectWeaponZone.IsEnabled = false;
-            modifyBtn.Visibility = Visibility.Collapsed;
-            delBtn.Visibility = Visibility.Collapsed;
-            saveBtn.Visibility = Visibility.Visible;
-            cancelBtn.Visibility = Visibility.Visible;
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
+            model.selectedWeapon = model.tempWeapon(model.selectedWeapon);
             selectedWeaponActive(false);
-            selectWeaponZone.IsEnabled = true;
-            saveBtn.Visibility = Visibility.Collapsed;
-            cancelBtn.Visibility = Visibility.Collapsed;
-            modifyBtn.Visibility = Visibility.Visible;
-            delBtn.Visibility = Visibility.Visible;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedWeaponActive(false);
-
-            selectWeaponZone.IsEnabled = true;
-            saveBtn.Visibility = Visibility.Collapsed;
-            cancelBtn.Visibility = Visibility.Collapsed;
-            modifyBtn.Visibility = Visibility.Visible;
-            delBtn.Visibility = Visibility.Visible;
         }
 
         private void selectedWeaponZoneBtn_Click(object sender, RoutedEventArgs e)
         {
             selectedWeaponZone.Visibility = Visibility.Hidden;
-            saveBtn.Visibility = Visibility.Collapsed;
-            cancelBtn.Visibility = Visibility.Collapsed;
-            modifyBtn.Visibility = Visibility.Visible;
-            delBtn.Visibility = Visibility.Visible;
+            selectedWeaponActive(false);
         }
 
         
