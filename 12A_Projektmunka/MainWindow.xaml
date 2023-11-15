@@ -178,12 +178,6 @@
             </Setter>
         </Style>
 
-
-
-
-
-        <SolidColorBrush x:Key="TransparentBlack" Color="Black" Opacity="0.5"/>
-        <SolidColorBrush x:Key="TransparentGray" Color="DarkGray" Opacity="0.5"/>
         <SolidColorBrush x:Key="CaretBrush" Color="White"/>
         <LinearGradientBrush x:Key="GrayToLightGrayGradient" Opacity="0.2" StartPoint="0,1" EndPoint="0,0">
             <GradientStop Offset="0" Color="LightGray"/>
@@ -254,41 +248,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="tbxBorder" TargetType="Border">
-            <Setter Property="Background" Value="{StaticResource TransparentGray}"/>
-            <Setter Property="CornerRadius" Value="10"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Cursor" Value="Hand"/>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="DarkGoldenrod"/>
-                    
-                </Trigger>
-            </Style.Triggers>
-
-            
-
-
-
-
-
-
-
-        </Style>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -301,7 +260,7 @@
         <Border Grid.Column="0" VerticalAlignment="Center" Background="{StaticResource TransparentBlack}" CornerRadius="50" Width="300">
             <Grid>
                 <StackPanel>
-                    <Button x:Name="weaponBtn" Content="Weapons" Margin="10" Height="70" Width="200"/>
+                    <Button x:Name="showWeaponsBtn" Content="Weapons" Margin="10" Height="70" Width="200" Click="showWeaponsBtn_Click"/>
                     <Button x:Name="aboutBtn" Content="About us" Margin="10" Height="70" Width="200" Click="aboutBtn_Click"/>
                     <Button x:Name="quitBtn" Content="Quit" Margin="10" Height="70" Width="200" Click="quitBtn_Click"/>
                 </StackPanel>
@@ -309,87 +268,92 @@
         </Border>
 
         <!--lista-->
-        <StackPanel x:Name="selectWeaponZone" Grid.Column="1">
+        <StackPanel x:Name="selectWeaponZone" Grid.Column="1" Visibility="Hidden">
             <Border Background="{StaticResource TransparentBlack}" CornerRadius="20,20,0,0" Width="550" Margin="0,10,0,0">
                 <Border Style="{StaticResource tbxBorder}" Width="500" Margin="0,10,0,0">
-                    <ComboBox x:Name="weaponTypeCbx" Width="500" ItemsSource="{Binding types}" SelectionChanged="weaponTypeCbx_SelectionChanged"/>
+                    <ComboBox x:Name="weaponTypeCbx" Width="500" ItemsSource="{Binding types}" SelectionChanged="weaponTypeCbx_SelectionChanged" SelectedIndex="0"/>
                 </Border>
             </Border>
             <Border 
                 Background="{StaticResource TransparentBlack}"
                 CornerRadius="50"
-                Padding="30">
-                <ListBox x:Name="weaponLbx"
+                Padding="20">
+                <Grid>
+                    <StackPanel>
+                        <Button x:Name="selectWeaponZoneBtn" Width="30" Height="30" Content="X" Background="Gray" Foreground="White" BorderBrush="Transparent" BorderThickness="0" FontWeight="Bold" FontSize="14" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0" Click="selectWeaponZoneBtn_Click"/>
+                        <ListBox x:Name="weaponLbx"
                              Height="850"
                              Width="560"
                              Margin="10"
                              ItemsSource="{Binding filteredWeapons}" SelectionChanged="weaponLbx_SelectionChanged">
-                    <ListBox.Resources>
-                        <Style TargetType="{x:Type ListBox}">
-                            <Style.Triggers>
-                                <Trigger Property="IsEnabled" Value="False">
+                            <ListBox.Resources>
+                                <Style TargetType="{x:Type ListBox}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Background" Value="#505050"/>
+                                            <Setter Property="BorderBrush" Value="#505050"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListBox}">
+                                                        <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        SnapsToDevicePixels="true">
+                                                            <ScrollViewer Padding="{TemplateBinding Padding}">
+                                                                <ItemsPresenter />
+                                                            </ScrollViewer>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                                <Style TargetType="{x:Type ScrollBar}">
                                     <Setter Property="Background" Value="#505050"/>
                                     <Setter Property="BorderBrush" Value="#505050"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type ListBox}">
-                                                <Border Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        SnapsToDevicePixels="true">
-                                                    <ScrollViewer Padding="{TemplateBinding Padding}">
-                                                        <ItemsPresenter />
-                                                    </ScrollViewer>
-                                                </Border>
+                                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                                <Grid x:Name="Bg" SnapsToDevicePixels="true">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                        <RowDefinition Height="0.00001*"/>
+                                                        <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
+                                                    </Grid.RowDefinitions>
+                                                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1" CornerRadius="10"/>
+                                                    <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
+                                                        <Track.DecreaseRepeatButton>
+                                                            <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource RepeatButtonTransparent}" HorizontalAlignment="Left" Width="17"/>
+                                                        </Track.DecreaseRepeatButton>
+                                                        <Track.IncreaseRepeatButton>
+                                                            <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
+                                                        </Track.IncreaseRepeatButton>
+                                                        <Track.Thumb>
+                                                            <Thumb Style="{StaticResource ScrollBarThumbVertical}" Margin="2"/>
+                                                        </Track.Thumb>
+                                                    </Track>
+                                                </Grid>
+
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                        <Style TargetType="{x:Type ScrollBar}">
-                            <Setter Property="Background" Value="#505050"/>
-                            <Setter Property="BorderBrush" Value="#505050"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type ScrollBar}">
-                                        <Grid x:Name="Bg" SnapsToDevicePixels="true">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
-                                                <RowDefinition Height="0.00001*"/>
-                                                <RowDefinition MaxHeight="{DynamicResource {x:Static SystemParameters.VerticalScrollBarButtonHeightKey}}"/>
-                                            </Grid.RowDefinitions>
-                                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Row="1" CornerRadius="10"/>
-                                            <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Grid.Row="1">
-                                                <Track.DecreaseRepeatButton>
-                                                    <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" Style="{StaticResource RepeatButtonTransparent}" HorizontalAlignment="Left" Width="17"/>
-                                                </Track.DecreaseRepeatButton>
-                                                <Track.IncreaseRepeatButton>
-                                                    <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" Style="{StaticResource RepeatButtonTransparent}"/>
-                                                </Track.IncreaseRepeatButton>
-                                                <Track.Thumb>
-                                                    <Thumb Style="{StaticResource ScrollBarThumbVertical}" Margin="2"/>
-                                                </Track.Thumb>
-                                            </Track>
-                                        </Grid>
-
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </ListBox.Resources>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" Foreground="White"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.Background>
-                        <SolidColorBrush Color="Transparent"/>
-                    </ListBox.Background>
-                    <ListBox.BorderBrush>
-                        <SolidColorBrush Color="Transparent"/>
-                    </ListBox.BorderBrush>
-                </ListBox>
+                                </Style>
+                            </ListBox.Resources>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" Foreground="White"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.Background>
+                                <SolidColorBrush Color="Transparent"/>
+                            </ListBox.Background>
+                            <ListBox.BorderBrush>
+                                <SolidColorBrush Color="Transparent"/>
+                            </ListBox.BorderBrush>
+                        </ListBox>
+                    </StackPanel>
+                </Grid>
             </Border>
             <Border Background="{StaticResource TransparentBlack}" CornerRadius="0,0,20,20" Width="550">
                 <Border Style="{StaticResource tbxBorder}" Width="200" Height="50" Margin="0,0,0,10">
@@ -399,15 +363,15 @@
         </StackPanel>
 
 
-        <Border x:Name="selectedWeaponZone" Grid.Column="2" Margin="20" Background="{StaticResource TransparentBlack}" CornerRadius="50">
+        <Border x:Name="selectedWeaponZone" Grid.Column="2" Margin="20" Background="{StaticResource TransparentBlack}" CornerRadius="50" Visibility="Hidden">
             <Grid>
-                <Label x:Name="selectedTypeLbl" Content="{Binding selectedWeapon.WeaponType}" Foreground="White" Margin="30,0" FontSize="45" FontWeight="DemiBold"/>
+                <Label x:Name="selectedTypeLbl" Content="{Binding tempWeapon.WeaponType}" Foreground="White" Margin="30,0" FontSize="45" FontWeight="DemiBold"/>
                 <Button x:Name="selectedWeaponZoneBtn" Width="30" Height="30" Content="X" Background="Gray" Foreground="White" BorderBrush="Transparent" BorderThickness="0" FontWeight="Bold" FontSize="14" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0" Click="selectedWeaponZoneBtn_Click"/>
                 <StackPanel Margin="40,40,40,0">
                     <Border Background="{DynamicResource GrayToLightGrayGradient}" CornerRadius="50" Margin="0,0,0,20">
                         <StackPanel>
-                            <Label x:Name="selectedNameLbl" Content="{Binding selectedWeapon.Name}" Margin="40,20,0,0" FontSize="40" FontWeight="DemiBold"/>
-                            <Image Height="280" Source="{Binding }" Width="700" Margin="0,10,0,20"/>
+                            <Label x:Name="selectedNameLbl" Content="{Binding tempWeapon.Name}" Margin="40,20,0,0" FontSize="40" FontWeight="DemiBold"/>
+                            <Image Height="280" Source="/12A_Projektmunka;component/img/ak-47.png" Width="700" Margin="0,10,0,20"/>
                         </StackPanel>
                     </Border>
 
@@ -416,14 +380,14 @@
                     <DockPanel>
                         <Label Content="Name:"/>
                         <Border Style="{StaticResource tbxBorder}">
-                            <TextBox x:Name="selectedNameTbx" IsEnabled="False" Text="{Binding selectedWeapon.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox x:Name="selectedNameTbx" IsEnabled="False" Text="{Binding tempWeapon.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </Border>
                     </DockPanel>
 
                     <DockPanel Margin="0,7,0,0">
                         <Label Content="Type:"/>
                         <Border Style="{StaticResource tbxBorder}" Width="300" HorizontalAlignment="Right">
-                            <ComboBox x:Name="selectedWeaponTypeCbx" ItemsSource="{Binding types}" SelectedItem="{Binding selectedWeapon.WeaponType, Mode=TwoWay}" IsEnabled="False"/>
+                            <ComboBox x:Name="selectedWeaponTypeCbx" ItemsSource="{Binding typesSelection}" SelectedItem="{Binding tempWeapon.WeaponType, Mode=TwoWay}" IsEnabled="False"/>
                         </Border>
                     </DockPanel>
 
@@ -432,7 +396,7 @@
                         <Border Style="{StaticResource tbxBorder}" Height="50" Width="100" HorizontalAlignment="Right">
                             <Grid>
                                 <Label Content="$" Foreground="Green"/>
-                                <TextBox x:Name="selectedcostTbx" IsEnabled="False" Text="{Binding selectedWeapon.Cost, Mode=TwoWay}" Padding="18,0,0,0" Height="50" Width="100" HorizontalAlignment="Right"/>
+                                <TextBox x:Name="selectedcostTbx" IsEnabled="False" Text="{Binding tempWeapon.Cost, Mode=TwoWay}" Padding="18,0,0,0" Height="50" Width="100" HorizontalAlignment="Right"/>
                             </Grid>
                         </Border>
                     </DockPanel>
@@ -440,29 +404,29 @@
                     <DockPanel Margin="0,7,0,0">
                         <Label Content="Ammo:"/>
                         <Border Style="{StaticResource tbxBorder}" Height="50" Width="100" HorizontalAlignment="Right">
-                            <TextBox x:Name="selectedammoTbx" IsEnabled="False" Text="{Binding selectedWeapon.Ammo, Mode=TwoWay}" Height="50" Width="100" HorizontalAlignment="Right"/>
+                            <TextBox x:Name="selectedammoTbx" IsEnabled="False" Text="{Binding tempWeapon.Ammo, Mode=TwoWay}" Height="50" Width="100" HorizontalAlignment="Right"/>
                         </Border>
                     </DockPanel>
 
                     <DockPanel Margin="0,7,0,0">
                         <Label Content="Damage:"/>
                         <Border Style="{StaticResource tbxBorder}" Height="50" Width="100" HorizontalAlignment="Right">
-                            <TextBox x:Name="selecteddamageTbx" IsEnabled="False" Text="{Binding selectedWeapon.Damage, Mode=TwoWay}" Height="50" Width="100" HorizontalAlignment="Right"/>
+                            <TextBox x:Name="selecteddamageTbx" IsEnabled="False" Text="{Binding tempWeapon.Damage, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="50" Width="100" HorizontalAlignment="Right"/>
                         </Border>
                     </DockPanel>
-                    <Slider x:Name="selecteddamageSldr" IsEnabled="False" Value="{Binding selectedWeapon.Damage, Mode=TwoWay}" Minimum="0" Maximum="100" Width="800" HorizontalAlignment="Left" Margin="20, 5"/>
+                    <Slider x:Name="selecteddamageSldr" IsEnabled="False" Value="{Binding tempWeapon.Damage, Mode=TwoWay}" Minimum="0" Maximum="100" Width="800" HorizontalAlignment="Left" Margin="20, 5"/>
 
 
                     <Label Content="Fire rate:" Margin="0,7,0,0"/>
-                    <Slider x:Name="selectedfrateSldr" Value="{Binding selectedWeapon.FireRate, Mode=TwoWay}" IsEnabled="False" Minimum="0" Maximum="10" Width="800" HorizontalAlignment="Left" Margin="20, 5"/>
+                    <Slider x:Name="selectedfrateSldr" Value="{Binding tempWeapon.FireRate, Mode=TwoWay}" IsEnabled="False" Minimum="0" Maximum="10" Width="800" HorizontalAlignment="Left" Margin="20, 5"/>
 
                     <DockPanel Margin="0,7,0,0">
                         <Label Content="Penetration:"/>
                         <Border Style="{StaticResource tbxBorder}" Height="50" Width="100" HorizontalAlignment="Right">
-                            <TextBox x:Name="selectedpenTbx" Text="{Binding selectedWeapon.Penetration, Mode=TwoWay}" IsEnabled="False" Height="50" Width="100"                    HorizontalAlignment="Right"/>
+                            <TextBox x:Name="selectedpenTbx" Text="{Binding tempWeapon.Penetration, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" Height="50" Width="100" HorizontalAlignment="Right"/>
                         </Border>
                     </DockPanel>
-                    <Slider x:Name="selectedpenSldr" Value="{Binding selectedWeapon.Penetration, Mode=TwoWay}" IsEnabled="False" Minimum="0" Maximum="100" Width="800" HorizontalAlignment="Left" Margin="20, 5"/>
+                    <Slider x:Name="selectedpenSldr" Value="{Binding tempWeapon.Penetration, Mode=TwoWay}" IsEnabled="False" Minimum="0" Maximum="100" Width="800" HorizontalAlignment="Left" Margin="20, 5"/>
 
 
                     <DockPanel x:Name="buttonsDp" Margin="0,30" HorizontalAlignment="Center">
@@ -474,7 +438,7 @@
                         </Border>
                         <Border Style="{StaticResource tbxBorder}" Margin="50,0,0,0">
                             <StackPanel>
-                                <Button x:Name="delBtn" Content="Delete" Height="50" Width="200"/>
+                                <Button x:Name="delBtn" Content="Delete" Height="50" Width="200" Click="delBtn_Click"/>
                                 <Button x:Name="cancelBtn" Content="Cancel" Height="50" Width="200" Visibility="Collapsed" Click="cancelBtn_Click"/>
                             </StackPanel>
                         </Border>

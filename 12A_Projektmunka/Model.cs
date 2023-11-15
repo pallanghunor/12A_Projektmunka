@@ -31,6 +31,13 @@ namespace _12A_Projektmunka
             set { _types = value; OnPorpertyChanged("types"); }
         }
 
+        private HashSet<string> _typesSelection;
+        public HashSet<string> typesSelection
+        {
+            get { return _typesSelection; }
+            set { _typesSelection = value; OnPorpertyChanged("typesSelection"); }
+        }
+
         private ObservableCollection<Weapon> _filteredWeapons;
         public ObservableCollection<Weapon> filteredWeapons
         {
@@ -38,11 +45,18 @@ namespace _12A_Projektmunka
             set { _filteredWeapons = value; OnPorpertyChanged("filteredWeapons"); }
         }
 
-        private Weapon _selectedWeapon;
+        private Weapon _selectedWeapon = new Weapon();
         public Weapon selectedWeapon
         {
             get { return _selectedWeapon; }
             set { _selectedWeapon = value; OnPorpertyChanged("selectedWeapon");}
+        }
+
+        private Weapon _tempWeapon;
+        public Weapon tempWeapon
+        {
+            get { return _tempWeapon; }
+            set { _tempWeapon = value; OnPorpertyChanged("tempWeapon"); }
         }
 
         public Model()
@@ -55,7 +69,7 @@ namespace _12A_Projektmunka
             filteredWeapons = new ObservableCollection<Weapon>();
             foreach (var weapon in weapons)
             {
-                if (weapon.WeaponType == weaponType || weaponType == "")
+                if (weapon.WeaponType == weaponType || weaponType == "Show All" || weaponType == "")
                 {
                     filteredWeapons.Add(weapon);
                 }
@@ -67,6 +81,8 @@ namespace _12A_Projektmunka
 
             weapons = new ObservableCollection<Weapon>();
             types = new HashSet<string>();
+            types.Add("Show All");
+            typesSelection = new HashSet<string>();
             StreamReader sr = new StreamReader("weapons.txt");
             sr.ReadLine();
             while(!sr.EndOfStream)
@@ -74,6 +90,7 @@ namespace _12A_Projektmunka
                 string row = sr.ReadLine();
                 weapons.Add(new Weapon(row));
                 types.Add(row.Split(';')[1]);
+                typesSelection.Add(row.Split(';')[1]);
             }
             sr.Close();
         }
