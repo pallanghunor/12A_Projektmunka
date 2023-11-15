@@ -9,15 +9,67 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\aa12.png" />
     <None Remove="img\aboutUsBackground.jpg" />
     <None Remove="img\ak-47.png" />
+    <None Remove="img\aug.png" />
+    <None Remove="img\awp.png" />
+    <None Remove="img\barrett_m82.png" />
+    <None Remove="img\beretta92fs.png" />
+    <None Remove="img\deagle.png" />
+    <None Remove="img\fiveseven.png" />
+    <None Remove="img\FNF2000.png" />
+    <None Remove="img\glock17.png" />
+    <None Remove="img\H&amp;K_USP.png" />
+    <None Remove="img\hk416.png" />
+    <None Remove="img\Kriss_Vector.png" />
+    <None Remove="img\l96a1.png" />
+    <None Remove="img\m16.png" />
+    <None Remove="img\M4.png" />
     <None Remove="img\mainbackground.jpg" />
+    <None Remove="img\Mossberg_500.png" />
+    <None Remove="img\mp5.png" />
+    <None Remove="img\mp7.png" />
+    <None Remove="img\ppbizon.png" />
+    <None Remove="img\remington870.png" />
+    <None Remove="img\Rpg7.png" />
+    <None Remove="img\Scar_L.png" />
+    <None Remove="img\sig-sauer.png" />
+    <None Remove="img\Spas12.png" />
+    <None Remove="img\tavorX95.png" />
+    <None Remove="img\Ump45.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\aa12.png" />
     <Resource Include="img\aboutUsBackground.jpg" />
     <Resource Include="img\ak-47.png" />
+    <Resource Include="img\aug.png" />
+    <Resource Include="img\awp.png" />
+    <Resource Include="img\barrett_m82.png" />
+    <Resource Include="img\beretta92fs.png" />
+    <Resource Include="img\deagle.png" />
+    <Resource Include="img\fiveseven.png" />
+    <Resource Include="img\FNF2000.png" />
+    <Resource Include="img\glock17.png" />
+    <Resource Include="img\H&amp;K_USP.png" />
+    <Resource Include="img\hk416.png" />
+    <Resource Include="img\Kriss_Vector.png" />
+    <Resource Include="img\l96a1.png" />
+    <Resource Include="img\m16.png" />
+    <Resource Include="img\M4.png" />
     <Resource Include="img\mainbackground.jpg" />
+    <Resource Include="img\Mossberg_500.png" />
+    <Resource Include="img\mp5.png" />
+    <Resource Include="img\mp7.png" />
+    <Resource Include="img\ppbizon.png" />
+    <Resource Include="img\remington870.png" />
+    <Resource Include="img\Rpg7.png" />
+    <Resource Include="img\Scar_L.png" />
+    <Resource Include="img\sig-sauer.png" />
+    <Resource Include="img\Spas12.png" />
+    <Resource Include="img\tavorX95.png" />
+    <Resource Include="img\Ump45.png" />
   </ItemGroup>
 
   <ItemGroup>

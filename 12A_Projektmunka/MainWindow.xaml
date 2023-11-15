@@ -371,7 +371,7 @@
                     <Border Background="{DynamicResource GrayToLightGrayGradient}" CornerRadius="50" Margin="0,0,0,20">
                         <StackPanel>
                             <Label x:Name="selectedNameLbl" Content="{Binding tempWeapon.Name}" Margin="40,20,0,0" FontSize="40" FontWeight="DemiBold"/>
-                            <Image Height="280" Source="/12A_Projektmunka;component/img/ak-47.png" Width="700" Margin="0,10,0,20"/>
+                            <Image Height="280" Source="{Binding tempWeapon.filePath}" Width="700" Margin="0,10,0,20"/>
                         </StackPanel>
                     </Border>
 

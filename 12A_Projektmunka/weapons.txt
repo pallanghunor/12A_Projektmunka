@@ -1,30 +1,28 @@
 Name;Type;File name;Cost;Ammo;Damage;Fire rate;Penetration;Difficulty
-M16;Assault Rifle;image1.png;1000;30;45;12;70;2
-Shotgun;Shotgun;image2.png;800;6;80;7;30;1
-Glock 17;Pistol;image3.png;500;17;30;15;20;1
-AK-47;Assault Rifle;image4.png;1200;30;55;11;60;2
-Sniper Rifle;Sniper Rifle;image5.png;2500;5;150;3;90;3
-MP5;Submachine Gun;image6.png;900;30;35;13;40;2
-Desert Eagle;Pistol;image7.png;750;7;50;4;10;2
-SCAR-L;Assault Rifle;image8.png;1100;30;48;10;55;2
-UMP45;Submachine Gun;image9.png;800;25;30;12;45;2
-SPAS-12;Shotgun;image10.png;950;8;85;6;25;1
-FN F2000;Assault Rifle;image11.png;1300;30;40;11;60;2
-Beretta 92FS;Pistol;image12.png;550;15;25;14;15;1
-RPG-7;Rocket Launcher;image13.png;2000;1;300;2;100;3
-Barrett M82;Sniper Rifle;image14.png;3000;5;250;5;95;3
-Kriss Vector;Submachine Gun;image15.png;1000;25;40;19;35;2
-M4;Shotgun;image16.png;900;6;70;8;20;1
-Five-seveN;Pistol;image17.png;650;20;32;16;12;1
-AUG;Assault Rifle;image18.png;1400;30;42;10;58;2
-Remington 870;Shotgun;image20.png;875;6;75;7;25;1
-H&K USP;Pistol;image21.png;700;12;30;15;18;1
-AWP;Sniper Rifle;image22.png;2700;10;450;2;100;3
-Tavor X95;Assault Rifle;image23.png;1350;30;45;11;60;2
-PP-19 Bizon;Submachine Gun;image24.png;950;64;35;13;40;2
-Mossberg 500;Shotgun;image25.png;875;6;75;6;20;1
-Sig Sauer P226;Pistol;image26.png;600;15;35;17;18;1
-L96A1;Sniper Rifle;image27.png;2600;5;350;4;90;3
-HK416;Assault Rifle;image28.png;1250;30;46;9;55;2
-MP7;Submachine Gun;image29.png;900;40;28;18;35;2
-AA-12;Shotgun;image30.png;1100;12;80;5;30;1
+M16;Assault Rifle;m16.png;1000;30;45;12;70;2
+Glock 17;Pistol;glock17.png;500;17;30;15;20;1
+AK-47;Assault Rifle;ak-47.png;1200;30;55;11;60;2
+MP5;Submachine Gun;mp5.png;900;30;35;13;40;2
+Desert Eagle;Pistol;deagle.png;750;7;50;4;10;2
+SCAR-L;Assault Rifle;scar_l.png;1100;30;48;10;55;2
+UMP45;Submachine Gun;ump45.png;800;25;30;12;45;2
+SPAS-12;Shotgun;spas12.png;950;8;85;6;25;1
+FN F2000;Assault Rifle;fnf2000.png;1300;30;40;11;60;2
+Beretta 92FS;Pistol;beretta92fs.png;550;15;25;14;15;1
+RPG-7;Rocket Launcher;rpg7.png;2000;1;300;2;100;3
+Barrett M82;Sniper Rifle;barrett_m82.png;3000;5;250;5;95;3
+Kriss Vector;Submachine Gun;kriss_vector.png;1000;25;40;19;35;2
+M4;Assault Rifle;m4.png;900;6;70;8;20;1
+Five-seveN;Pistol;fiveseven.png;650;20;32;16;12;1
+AUG;Assault Rifle;aug.png;1400;30;42;10;58;2
+Remington 870;Shotgun;remington870.png;875;6;75;7;25;1
+H&K USP;Pistol;h&k_usp.png;700;12;30;15;18;1
+AWP;Sniper Rifle;awp.png;2700;10;450;2;100;3
+Tavor X95;Assault Rifle;tavorx95.png;1350;30;45;11;60;2
+PP-19 Bizon;Submachine Gun;ppbizon.png;950;64;35;13;40;2
+Mossberg 500;Shotgun;mossberg_500.png;875;6;75;6;20;1
+Sig Sauer P226;Pistol;sig-sauer.png;600;15;35;17;18;1
+L96A1;Sniper Rifle;l96a1.png;2600;5;350;4;90;3
+HK416;Assault Rifle;hk416.png;1250;30;46;9;55;2
+MP7;Submachine Gun;mp7.png;900;40;28;18;35;2
+AA-12;Shotgun;aa12.png;1100;12;80;5;30;1

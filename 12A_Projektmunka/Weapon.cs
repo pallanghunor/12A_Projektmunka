@@ -20,7 +20,8 @@ namespace _12A_Projektmunka
 
         public string filePath
         {
-            get { return $"/12A_Projektmunka; component/img/{FileName}"; }
+            get { return $"/12A_Projektmunka;component/img/{FileName}"; }
+            set { }
         }
         public int Cost { get; set; }
         public int Ammo { get; set; }

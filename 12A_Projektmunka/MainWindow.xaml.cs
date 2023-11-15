@@ -45,6 +45,7 @@ namespace _12A_Projektmunka
             model.tempWeapon.Difficulty = model.selectedWeapon.Difficulty;
             model.tempWeapon.FireRate = model.selectedWeapon.FireRate;
             model.tempWeapon.Penetration = model.selectedWeapon.Penetration;
+            model.tempWeapon.filePath = model.selectedWeapon.filePath;
         }
 
         private void selectedWeaponActive(bool active)
@@ -98,7 +99,8 @@ namespace _12A_Projektmunka
                     Damage = model.selectedWeapon.Damage,
                     Difficulty = model.selectedWeapon.Difficulty,
                     FireRate = model.selectedWeapon.FireRate,
-                    Penetration = model.selectedWeapon.Penetration
+                    Penetration = model.selectedWeapon.Penetration,
+                    filePath = model.selectedWeapon.filePath
                 };
             }
         }
