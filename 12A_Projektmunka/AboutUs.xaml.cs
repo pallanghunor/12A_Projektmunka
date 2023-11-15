@@ -28,5 +28,10 @@ namespace _12A_Projektmunka
         {
             MessageBox.Show("A munkásember mindig pancser marad!", "Édes Istenem", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        private void closeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
