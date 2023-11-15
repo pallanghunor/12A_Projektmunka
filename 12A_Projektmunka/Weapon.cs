@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,11 @@ namespace _12A_Projektmunka
         }
         public string WeaponType { get; set; }
         public string FileName { get; set; }
+
+        public string filePath
+        {
+            get { return $"/12A_Projektmunka; component/img/{FileName}"; }
+        }
         public int Cost { get; set; }
         public int Ammo { get; set; }
         public int Damage { get; set; }
