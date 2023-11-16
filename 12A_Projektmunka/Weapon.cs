@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,10 @@ namespace _12A_Projektmunka
         public string WeaponType { get; set; }
         public string FileName { get; set; }
 
+        string executableDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
         public string filePath
         {
-            get { return $"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase)}/img/{FileName}"; }
+            get { return $"{Directory.GetParent(Directory.GetParent(executableDirectory).FullName).FullName}/img/{FileName}"; }
             set { }
         }
         public int Cost { get; set; }

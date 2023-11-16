@@ -38,6 +38,52 @@ namespace _12A_Projektmunka
             model.FilterWeapons(weaponTypeCbx.SelectedItem.ToString());
         }
 
+        private bool checkError()
+        {
+            if (String.IsNullOrWhiteSpace(selectedNameTbx.Text))
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Name field must contain a charachter!");
+                errorMessageBox.ShowDialog();
+                return false;
+            } else if(selectedWeaponTypeCbx.SelectedItem == null)
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Combobox field is empty!");
+                errorMessageBox.ShowDialog();
+                return false;
+            } else if (!int.TryParse(selectedammoTbx.Text, out int ammo) || ammo <= 0)
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Incorrect ammo value!");
+                errorMessageBox.ShowDialog();
+                return false;
+            } else if(!int.TryParse(selectedcostTbx.Text, out int cost) || cost <= 0)
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Incorrect cost value!");
+                errorMessageBox.ShowDialog();
+                return false;
+            } else if(!int.TryParse(selecteddamageTbx.Text, out int damage) || damage <= 0 || damage > 100)
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Incorrect damage value!");
+                errorMessageBox.ShowDialog();
+                return false;
+            } else if(!int.TryParse(selectedpenTbx.Text, out int pen) || pen <= 0 || pen > 100)
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Incorrect penetration value!");
+                errorMessageBox.ShowDialog();
+                return false;
+            } else if(selectedfrateSldr.Value == 0)
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Incorrect fire rate value!");
+                errorMessageBox.ShowDialog();
+                return false;
+            } else if (model.tempWeapon.FileName == null)
+            {
+                ErrorMessageBox errorMessageBox = new ErrorMessageBox("Weapon image is not selected!");
+                errorMessageBox.ShowDialog();
+                return false;
+            }
+            return true;
+        }
+
         private void resetWeaponStats()
         {
             model.tempWeapon.Name = model.selectedWeapon.Name;
@@ -147,25 +193,27 @@ namespace _12A_Projektmunka
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-            selectedWeaponActive(false);
-            if(model.selectedWeapon != null) //Meglévő fegyver modosítása
+            if (checkError())
             {
-                for (int i = 0; i < model.weapons.Count; i++)
+                selectedWeaponActive(false);
+                if (model.selectedWeapon != null) //Meglévő fegyver modosítása
                 {
-                    if (model.weapons[i] == model.selectedWeapon)
+                    for (int i = 0; i < model.weapons.Count; i++)
                     {
-                        model.weapons[i] = model.tempWeapon;
-                        refreshLbx();
-                        break;
+                        if (model.weapons[i] == model.selectedWeapon)
+                        {
+                            model.weapons[i] = model.tempWeapon;
+                            refreshLbx();
+                            break;
+                        }
                     }
                 }
+                else // új fegyver hozzáadása
+                {
+                    model.weapons.Add(model.tempWeapon);
+                }
+                refreshLbx();
             }
-            else // új fegyver hozzáadása
-            {
-                model.weapons.Add(model.tempWeapon);
-            }
-            refreshLbx();
-            weaponLbx.SelectedItem = model.selectedWeapon;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
@@ -222,31 +270,26 @@ namespace _12A_Projektmunka
             {
                 string selectedFilePath = openFileDialog.FileName;
 
-                // Get the directory where the executable is located
                 string executableDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
 
-                // Go up two levels to reach the project directory
                 string projectDirectory = Directory.GetParent(Directory.GetParent(executableDirectory).FullName).FullName;
 
-                // Combine with "img" folder within the project structure
                 string targetFolder = Path.Combine(projectDirectory, "img");
 
-                // Create the "img" folder if it doesn't exist
                 if (!Directory.Exists(targetFolder))
                 {
                     Directory.CreateDirectory(targetFolder);
                 }
 
-                // Get the file name without the path
                 string fileName = Path.GetFileName(selectedFilePath);
 
-                // Combine the "img" folder and file name to get the full target path
                 string targetFilePath = Path.Combine(targetFolder, fileName);
 
-                // Copy the file to the target location
                 File.Copy(selectedFilePath, targetFilePath, true);
 
                 Debug.WriteLine($"Copied file to: {targetFilePath}");
+
+                model.tempWeapon.FileName = fileName;
             }
         }
     }
