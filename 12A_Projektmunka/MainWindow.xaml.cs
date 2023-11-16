@@ -165,6 +165,7 @@ namespace _12A_Projektmunka
                 model.weapons.Add(model.tempWeapon);
             }
             refreshLbx();
+            weaponLbx.SelectedItem = model.selectedWeapon;
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)
@@ -219,7 +220,33 @@ namespace _12A_Projektmunka
 
             if (openFileDialog.ShowDialog() == true)
             {
-                
+                string selectedFilePath = openFileDialog.FileName;
+
+                // Get the directory where the executable is located
+                string executableDirectory = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
+
+                // Go up two levels to reach the project directory
+                string projectDirectory = Directory.GetParent(Directory.GetParent(executableDirectory).FullName).FullName;
+
+                // Combine with "img" folder within the project structure
+                string targetFolder = Path.Combine(projectDirectory, "img");
+
+                // Create the "img" folder if it doesn't exist
+                if (!Directory.Exists(targetFolder))
+                {
+                    Directory.CreateDirectory(targetFolder);
+                }
+
+                // Get the file name without the path
+                string fileName = Path.GetFileName(selectedFilePath);
+
+                // Combine the "img" folder and file name to get the full target path
+                string targetFilePath = Path.Combine(targetFolder, fileName);
+
+                // Copy the file to the target location
+                File.Copy(selectedFilePath, targetFilePath, true);
+
+                Debug.WriteLine($"Copied file to: {targetFilePath}");
             }
         }
     }
