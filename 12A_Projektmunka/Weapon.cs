@@ -20,7 +20,7 @@ namespace _12A_Projektmunka
 
         public string filePath
         {
-            get { return $"/12A_Projektmunka;component/img/{FileName}"; }
+            get { return $"{System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase)}/img/{FileName}"; }
             set { }
         }
         public int Cost { get; set; }
