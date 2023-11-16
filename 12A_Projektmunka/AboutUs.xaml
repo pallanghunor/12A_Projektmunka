@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <Image Source="/12A_Projektmunka;component/img/aboutUsBackground.jpg" Width="600" Margin="0,30,0,0"/>
+            <Image Source="/12A_Projektmunka;component/img/hunor.jpg" Height="350" Width="600" Margin="0,30,0,0"/>
             <Label Content="Hunor" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Foreground="White"/>
 
             <DockPanel>
@@ -58,7 +58,7 @@
         <StackPanel Grid.Column="1">
             <Grid>
                 <Button x:Name="closeBtn" Width="30" Height="30" Content="X" Background="black" Foreground="White" BorderBrush="Transparent" BorderThickness="0" FontWeight="Bold" FontSize="14" Padding="0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="closeBtn_Click"/>
-                <Image Source="/12A_Projektmunka;component/img/aboutUsBackground.jpg" Width="600" Margin="0,30,0,0"/>
+                <Image Source="/12A_Projektmunka;component/img/akos.jpg" Height="350" Width="600" Margin="0,30,0,0"/>
             </Grid>
             <Label Content="Ákos" FontWeight="Bold" FontSize="40" HorizontalAlignment="Center" Foreground="White"/>
 

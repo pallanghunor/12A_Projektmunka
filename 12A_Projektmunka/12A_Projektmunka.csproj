@@ -12,6 +12,7 @@
     <None Remove="img\aa12.png" />
     <None Remove="img\aboutUsBackground.jpg" />
     <None Remove="img\ak-47.png" />
+    <None Remove="img\akos.jpg" />
     <None Remove="img\aug.png" />
     <None Remove="img\awp.png" />
     <None Remove="img\barrett_m82.png" />
@@ -22,6 +23,7 @@
     <None Remove="img\glock17.png" />
     <None Remove="img\H&amp;K_USP.png" />
     <None Remove="img\hk416.png" />
+    <None Remove="img\hunor.jpg" />
     <None Remove="img\Kriss_Vector.png" />
     <None Remove="img\l96a1.png" />
     <None Remove="img\m16.png" />
@@ -44,6 +46,7 @@
     <Resource Include="img\aa12.png" />
     <Resource Include="img\aboutUsBackground.jpg" />
     <Resource Include="img\ak-47.png" />
+    <Resource Include="img\akos.jpg" />
     <Resource Include="img\aug.png" />
     <Resource Include="img\awp.png" />
     <Resource Include="img\barrett_m82.png" />
@@ -54,6 +57,7 @@
     <Resource Include="img\glock17.png" />
     <Resource Include="img\H&amp;K_USP.png" />
     <Resource Include="img\hk416.png" />
+    <Resource Include="img\hunor.jpg" />
     <Resource Include="img\Kriss_Vector.png" />
     <Resource Include="img\l96a1.png" />
     <Resource Include="img\m16.png" />
