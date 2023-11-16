@@ -213,6 +213,7 @@ namespace _12A_Projektmunka
                     model.weapons.Add(model.tempWeapon);
                 }
                 refreshLbx();
+                weaponLbx.SelectedItem = model.selectedWeapon;
             }
         }
 
